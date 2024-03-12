@@ -1,4 +1,0 @@
-name = "goodthought"
-main = "src/worker.js"
-compatibility_date = "2024-03-11"
-workers_dev = true
