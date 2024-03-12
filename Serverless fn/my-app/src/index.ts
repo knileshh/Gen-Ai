@@ -11,7 +11,7 @@ async function run(content: any) {
   // For text-only input, use the gemini-pro model
   const {GEMINI_API} = env(content)
   const genAI = new GoogleGenerativeAI(GEMINI_API);
-  const model = genAI.getGenerativeModel({ model: "gemini-1.0-pro-latest"});
+  const model = genAI.getGenerativeModel({ model: "gemini-pro"});
 
   const prompt = "Write a line."
 
@@ -23,7 +23,10 @@ async function run(content: any) {
 
 app.get('/', async (c) => {
 
-  const ans = await run(c);
+  let ans = ""
+
+  ans = await run(c);
+
   return c.json({
       message: 'Live!',
       Quote: ans
