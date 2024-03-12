@@ -5,13 +5,13 @@ import { GoogleGenerativeAI } from '@google/generative-ai';
 
 const app = new Hono();
 
-app.use(cors())
+app.use('/*', cors())
 
 async function run(content: any) {
   // For text-only input, use the gemini-pro model
   const {GEMINI_API} = env(content)
   const genAI = new GoogleGenerativeAI(GEMINI_API);
-  const model = genAI.getGenerativeModel({ model: "gemini-pro"});
+  const model = genAI.getGenerativeModel({ model: "gemini-1.0-pro-latest"});
 
   const prompt = "Write a line."
 
@@ -32,9 +32,8 @@ app.get('/', async (c) => {
 
 app.get('/v1', async (c) => {
 
-  const ans = await run(c);
-  console.log(ans)
-  return c.text(ans)
+  // const ans = await run(c);
+  return c.text("ans")
 })
 
 
